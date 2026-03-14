@@ -1,7 +1,9 @@
 import logging
 import argparse
 import sys
+from ingestion.ingester import Ingester
 from ingestion.salary_ingester import SalaryIngester
+from ingestion.roster_ingester import RosterIngester
 import pandas as pd
 
 
@@ -27,7 +29,9 @@ def main() -> int:
 
     logger.info("MLS Salary Performance")
     logger.info("Getting Salary Data For 2025")
-    ingester = SalaryIngester()
+    ingester: Ingester = SalaryIngester()
+    ingester.run()
+    ingester: Ingester = RosterIngester()
     ingester.run()
 
 
